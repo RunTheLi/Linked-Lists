@@ -1,9 +1,7 @@
+//node.js
 export class Node {
-  value;
-  nextNode;
-
-  constructor() {
-    this.value = null;
-    this.nextNode = null;
+    constructor(value = null) {
+      this.value = value;
+      this.nextNode = null;
+    }
   }
-}
