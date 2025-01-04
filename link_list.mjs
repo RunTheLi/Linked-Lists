@@ -9,7 +9,7 @@ export class LinkedList{
         this.size = 0;
     }
 
-    append(value){
+    append(value){ //เพิ่ม Node ใหม่เข้าไปที่ ท้ายลิสต์
         const newNode = new Node(value);
         if (this.size === 0) {
             this.head = newNode;
@@ -21,7 +21,7 @@ export class LinkedList{
         this.size++;
     }
 
-    prepend(value){
+    prepend(value){ //เพิ่ม Node ใหม่เข้าไปที่ หัวลิสต์
         const newNode = new Node(value);
         if (this.size === 0) {
             this.head = newNode;
@@ -45,7 +45,7 @@ export class LinkedList{
         return this.tail;
     }
 
-    at(index){
+    at(index){ //คืนค่า Node ที่ตำแหน่งที่ระบุ (index)
        if (index < 0 || index >= this.size) return null;
        let current = this.head;
        for(let i = 0; i< index; i++){
@@ -54,27 +54,27 @@ export class LinkedList{
        return current;
     }
 
-    pop(){
-        if( this.size === 0) return null;
-        if( this.size === 1){
-            const poppedNode = this.head;
-            this.head = null;
-            this.tail = null;
-            this.size--;
+    pop(){ //ลบ Node สุดท้ายของลิสต์
+        if (this.size === 0) return null; // ถ้าลิสต์ว่าง
+        if (this.size === 1) { // ถ้ามีเพียง Node เดียว
+        const poppedNode = this.head; // เก็บ Node ที่จะลบ
+        this.head = null; // ลบ head
+        this.tail = null; // ลบ tail
+        this.size--; // ลดขนาดของลิสต์
             return poppedNode;
-        }
-        let current = this.head;
-        while (current.nextNode !== this.tail) {
-        current = current.nextNode;
-        } 
-        const poppedNode = this.tail;
-        this.tail = current;
-        this.tail.nextNode = null;
-        this.size--;
-        return poppedNode;
     }
+        let current = this.head; // เริ่มต้นที่ head
+        while (current.nextNode !== this.tail) {
+        current = current.nextNode; // เดินไปยัง Node ก่อน tail
+    }
+        const poppedNode = this.tail; // เก็บ Node ที่จะลบ
+        this.tail = current; // ตั้ง tail ใหม่
+        this.tail.nextNode = null; // ลบการเชื่อมต่อของ tail ใหม่
+        this.size--; // ลดขนาดของลิสต์
+            return poppedNode;
+}   
 
-    contains(value){
+    contains(value){ //ตรวจสอบว่าค่าที่ระบุอยู่ในลิสต์หรือไม่
         let current = this.head;
         while(current) {
             if(current.value === value) return true;
@@ -83,7 +83,7 @@ export class LinkedList{
         return false;
     }
 
-    find(value){
+    find(value){ //คืนค่าดัชนี (index) ของ Node ที่มีค่าตรงกัน
         let current = this.head;
         let index = 0;
         while (current) {
